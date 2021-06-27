@@ -17,7 +17,7 @@ namespace Simple_Backup
 {
     /*
     * Main Window
-    * Icon: <div>Icons made by <a href="https://www.iconfinder.com/kirill.kazachek" title="Kirill Kazachek">Kirill Kazachek</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    * Icon: <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     */
     public partial class MainWindow : Window
     {
