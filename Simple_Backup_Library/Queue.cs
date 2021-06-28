@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SimpleBackupLibrary
+namespace Simple_Backup_Library
 {
     public class Queue
     {

@@ -1,4 +1,4 @@
-﻿namespace SimpleBackupLibrary
+﻿namespace Simple_Backup_Library
 {
     public class Destination
     {

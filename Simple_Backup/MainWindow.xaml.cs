@@ -1,11 +1,10 @@
 ﻿using Microsoft.Win32;
-using SimpleBackupLibrary;
+using Simple_Backup_Library;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-//using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,14 +20,16 @@ namespace Simple_Backup
     */
     public partial class MainWindow : Window
     {
-        private CancellationTokenSource cts = new();
         public ObservableCollection<string> cbItems { get; set; } // Binded for Destination ComboBox
-        public Queue queue = new(); // Source Path Queue
+
+        private Queue queue = new(); // Source Path Queue
 
         private string drivepath;
         private string backupfolder;
         private string backupdir;
         private string currentpath = Environment.CurrentDirectory;
+
+        CancellationTokenSource cts = new();
 
         public MainWindow()
         {
@@ -183,77 +184,22 @@ namespace Simple_Backup
             }
         }
 
-        private async Task DirectoryCopy(string sourceDirName, string destDirName, CancellationToken cancellation)
+        private async Task Backup(CancellationToken cancellation)
         {
-            // Cancel when requested
             cancellation.ThrowIfCancellationRequested();
-            try
-            {
-                DirectoryInfo dir = new DirectoryInfo(sourceDirName);
-                DirectoryInfo[] dirs = dir.GetDirectories();
-                List<Task> todo = new();
-                string Excep = ".849C9593-D756-4E56-8D6E-42412F2A707B";
 
-                // If the source directory does not exist, throw an exception.
-                if (!dir.Exists)
-                {
-                    throw new DirectoryNotFoundException("Source directory does not exist or could not be found: " + sourceDirName);
-                }
-
-                // If the destination directory does not exist, create it.
-                if (!Directory.Exists(destDirName))
-                {
-                    _ = Directory.CreateDirectory(destDirName);
-                }
-
-                // Copy the subdirectories in the main destination directory
-                foreach (DirectoryInfo subdir in dirs)
-                {
-                    // Create the subdirectory.
-                    string Dirpath = Path.Combine(destDirName, subdir.Name);
-                    // Copy the subdirectories. No need for any parallel async because this is super short
-                    if (!File.Exists(@Dirpath))
-                    {
-                        await DirectoryCopy(subdir.FullName, Dirpath, cts.Token);
-                    }
-                }
-
-                // Get the file contents of the directory to copy.
-                FileInfo[] files = dir.GetFiles();
-                foreach (FileInfo file in files)
-                {
-                    if (!(file.Name == Excep))
-                    {
-                        // Create the path to the new copy of the file.
-                        string Despath = Path.Combine(destDirName, file.Name);
-                        // Queue the file for copying, if file does not exists
-                        if (!File.Exists(@Despath))
-                        {
-                            todo.Add(Task.Run(() => file.CopyTo(Despath, false)));
-                        }
-                    }
-                }
-
-                // Run the copying task
-                await Task.WhenAll(todo);
-            }
-            catch (Exception) { }
-        }
-
-        private async Task Backup()
-        {
             if (BackupDrive.Text is not ("" or " "))
             {
                 if (BackupMode.Text is not ("" or " "))
                 {
                     foreach (Source s in queue.Sources)
                     {
-                        //await Task.Run(() => MessageBox.Show(s.Name));
                         if (s.Queue)
                         {
                             string DestinationFolder = Path.Combine(backupdir, s.Name);
                             StatusReport.Text = await Task.Run(() => "Backing up: " + s.Path);
-                            await DirectoryCopy(s.Path, DestinationFolder, cts.Token);
+
+                            await CopyMethod.CopyF(s.Path, DestinationFolder, cts.Token);
                         }
                     }
                 }
@@ -277,6 +223,7 @@ namespace Simple_Backup
             cts.Dispose();
             cts = new CancellationTokenSource();
 
+            // Backup according to the settings
             if (BackupDrive.Text is not ("" or " "))
             {
                 if (BackupMode.Text is not ("" or " "))
@@ -285,16 +232,11 @@ namespace Simple_Backup
 
                     try
                     {
-                        await Backup();
+                        await Backup(cts.Token);
                         await Task.Delay(1500);
                         StatusReport.Text = await Task.Run(() => " ");
                     }
-                    catch (OperationCanceledException)
-                    {
-                        StatusReport.Text = await Task.Run(() => "Cancelled Backup ...");
-                        await Task.Delay(1500);
-                        StatusReport.Text = await Task.Run(() => " ");
-                    }
+                    catch (Exception) { }
 
                     BackupButton.Content = await Task.Run(() => "Start Backup");
                 }
@@ -312,6 +254,8 @@ namespace Simple_Backup
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             cts.Cancel();   // Throw Cancelation token
+            StatusReport.Text = "Cancelling backup ...";
+
         }
 
         private void BackupMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -414,13 +358,10 @@ namespace Simple_Backup
         private void PathList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Source c = (Source)PathList.SelectedItem;
-            //ListBoxItem b = PathList.SelectedValue as ListBoxItem;
-            //MessageBox.Show(c.Queue.ToString());
 
             if (c.Queue)
             {
                 c.Queue = false;
-                //QuList.Items[2].QueueStat = true;
                 PathList.Items.Refresh();
             }
             else
