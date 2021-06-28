@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using Simple_Backup_Library;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -255,7 +254,6 @@ namespace Simple_Backup
         {
             cts.Cancel();   // Throw Cancelation token
             StatusReport.Text = "Cancelling backup ...";
-
         }
 
         private void BackupMode_SelectionChanged(object sender, SelectionChangedEventArgs e)

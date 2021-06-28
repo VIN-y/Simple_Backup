@@ -75,7 +75,7 @@ namespace Simple_Backup_Library
 
             else
             {
-                // Specific file backup (setting to overwrite the old backup, until the next hour hit)
+                // Specific file backup (setting to overwrite the old backup, until the next hour hit. Change to "false" in the "File.Copy..." to change this.)
                 des = Path.GetDirectoryName(destDirName);
                 if (!Directory.Exists(des))
                 {
