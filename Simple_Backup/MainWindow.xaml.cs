@@ -37,13 +37,9 @@ namespace Simple_Backup
 
             // Display the list
             PathList.ItemsSource = queue.Sources;
-
-            // Load log, or Shows the default folder list (if there is no log file)
-            LoadLog();
-
-            // Save new log on close
-            Closing += new CancelEventHandler(MainWindow_Closing);
         }
+
+
 
         /*
          * Working methods
@@ -112,7 +108,7 @@ namespace Simple_Backup
             }
         }
 
-        private void LoadLog()
+        private void Load()
         {
             string logpath = Path.Combine(currentpath, "Simple_Backup_Log");
             string sourcename = " ";
@@ -181,6 +177,7 @@ namespace Simple_Backup
             {
                 SetupDefaultSourceFolders();
             }
+            PathList.Items.Refresh();
         }
 
         private async Task Backup(CancellationToken cancellation)
@@ -457,6 +454,18 @@ namespace Simple_Backup
         void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             SaveLog();
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (SingleInstance.AlreadyRunning())
+            {
+                Application.Current.Shutdown(); // Just shutdown the current application, if any instance found.
+            }
+            else
+            {
+                Load();
+            }
         }
     }
 }

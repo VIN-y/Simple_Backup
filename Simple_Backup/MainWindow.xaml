@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Simple_Backup"
         mc:Ignorable="d"
-        Title="Simple Backup" Height="600" Width="800"
+        Title="Simple Backup" Height="600" Width="850"
         WindowStartupLocation="CenterScreen"
-        KeyDown="Window_KeyDown">
+        KeyDown="Window_KeyDown"
+        Loaded="MainWindow_Loaded"
+        Closing="MainWindow_Closing">
+    
     <Window.Resources>
 
         <DataTemplate x:Key="SourceBoxTemplate">
