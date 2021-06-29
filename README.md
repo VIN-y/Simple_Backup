@@ -10,9 +10,8 @@ A simple backup app for Window
 
 # Footnotes:
 There are some missing features that is currently being worked on:
-1. Smart window - where the app would know that there is an active window and would not start an new instance of the app (so you don't accidentally run 2 backup instances at the same time).
-2. Progress bar - the most tricky part is where to put it (aestheticly speaking).
-3. Auto backup - Create a scheduled task, which can be change by the user.
+1. Progress bar - the most tricky part is where to put it (aestheticly speaking).
+2. Auto backup - Create a scheduled task, which can be change by the user.
 
 Here are features that I though about, but still don't know if they are worth it (or simply have not figured out how to do yet):
 1. Trusted Publisher Certificate - this would allow the app to not be seen as untrusted source source on first start. However, it is a paid feature for myself and I am not ready to commit to that yet.
