@@ -24,12 +24,12 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Column="0" Grid.Row="0" Margin="0, 8"
-                           Width="80"
+                           MinWidth="80"
                            TextWrapping="Wrap"
                            VerticalAlignment="Center"
                            Text="{Binding Path=QueueStat}"/>
                 <TextBlock Grid.Column="1" Grid.Row="0" Margin="10, 0"
-                           Width="100"
+                           Width="120"
                            TextWrapping="Wrap"
                            VerticalAlignment="Center"
                            Text="{Binding Path=Name}"/>
@@ -48,8 +48,7 @@
     </Window.Resources>
 
     <DockPanel>
-        <StatusBar DockPanel.Dock="Bottom" 
-                   Height="auto" 
+        <StatusBar DockPanel.Dock="Bottom"
                    BorderBrush="#3c3c3c"
                    BorderThickness="1"
                    Background="#1e1e1e">
@@ -85,7 +84,7 @@
                    Content="Backup Mode:" FontWeight="Bold"/>
 
             <ComboBox Grid.Column="2" Grid.Row="1"
-                      Width="150" Height="22"
+                      MinWidth="150" MinHeight="22"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center"
                       x:Name="BackupDrive"
@@ -93,7 +92,7 @@
                       SelectionChanged="BackupDrive_SelectionChanged">
             </ComboBox>
             <ComboBox Grid.Column="2" Grid.Row="2"
-                      Width="150" Height="22"
+                      MinWidth="150" MinHeight="22"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center"
                       x:Name="BackupMode"
@@ -112,7 +111,7 @@
                        x:Name="BD_detail"/>
 
             <Button Grid.Column="4" Grid.Row="1" 
-                    Width="100" Height="61"
+                    MinWidth="100" MinHeight="61"
                     Grid.RowSpan="2"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
@@ -120,28 +119,28 @@
                     Content = "Start backup"  FontWeight="Bold"
                     Click ="BackupButton_Click"/>
             <Button Grid.Column="4" Grid.Row="3" Margin="10, 5"
-                    Width="100"  Height="25"
+                    MinWidth="100" MinHeight="25"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     x:Name="CancelButton"
                     Content="Cancel"  FontWeight="Bold"
                     Click="CancelButton_Click"/>
             <Button Grid.Column="3" Grid.Row="1" Margin="10, 5"
-                    Width="100" Height="25"
+                    MinWidth="100" MinHeight="25"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     x:Name="AddButton"
                     Content="Add"  FontWeight="Bold"
                     Click="AddButton_Click"/>
             <Button Grid.Column="3" Grid.Row="2" Margin="10, 5"
-                    Width="100"  Height="25"
+                    MinWidth="100"  MinHeight="25"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     x:Name="RemoveButton"
                     Content="Remove"  FontWeight="Bold"
                     Click="RemoveButton_Click"/>
             <Button Grid.Column="3" Grid.Row="3" Margin="10, 5"
-                    Width="100"  Height="25"
+                    MinWidth="100"  MinHeight="25"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     x:Name="ResetButton"
@@ -168,13 +167,13 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="1" Grid.Row="2"
-                       Width="80"
+                       MinWidth="80"
                        Foreground="White"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Content="Queue?" FontWeight="Bold"/>
                 <Label Grid.Column="2" Grid.Row="2" Margin="10, 0"
-                       Width="100"
+                       MinWidth="120"
                        Foreground="White"
                        HorizontalAlignment="Center" HorizontalContentAlignment="Left"
                        VerticalAlignment="Center" VerticalContentAlignment="Center"

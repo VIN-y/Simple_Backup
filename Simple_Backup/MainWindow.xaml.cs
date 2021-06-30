@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using Simple_Backup_Library;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -77,6 +78,92 @@ namespace Simple_Backup
                     Destination ite = new Destination { Name = d.Name, Path = d.VolumeLabel };
                     cbItems.Add(item: ite.Display);
                 }
+            }
+        }
+
+        public async Task CopyF(string sourceDirName, string destDirName, CancellationToken cancellation)
+        {
+            cancellation.ThrowIfCancellationRequested();
+
+            FileAttributes attr = File.GetAttributes(sourceDirName);
+            List<Task> todo = new();
+            string Sourpath;
+            string Destpath;
+            string Excep = ".849C9593-D756-4E56-8D6E-42412F2A707B";
+
+            // Detect whether its a directory or file
+            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+            {
+                // Folder (directory) backup (do not overwrite what is already there)
+                try
+                {
+                    DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+                    DirectoryInfo[] dirs = dir.GetDirectories();
+
+                    // If the source directory does not exist, throw an exception.
+                    if (!dir.Exists)
+                    {
+                        throw new DirectoryNotFoundException("Source directory does not exist or could not be found: " + sourceDirName);
+                    }
+                    else
+                    {
+                        // Create folders and subfolders
+                        if (!Directory.Exists(destDirName))
+                        {
+                            _ = Directory.CreateDirectory(destDirName);
+                        }
+
+                        foreach (DirectoryInfo subdir in dirs)
+                        {
+                            Sourpath = Path.Combine(sourceDirName, subdir.Name);
+                            Destpath = Path.Combine(destDirName, subdir.Name);
+
+                            if (!File.Exists(@Destpath))
+                            {
+                                await CopyF(subdir.FullName, Destpath, cancellation);
+                                StatusReport.Text = await Task.Run(() => "Backing up: " + Sourpath);
+                            }
+                        }
+
+                        // Get the file contents of the directory to copy.
+                        FileInfo[] files = dir.GetFiles();
+                        foreach (FileInfo file in files)
+                        {
+                            if (!(file.Name == Excep))
+                            {
+                                Sourpath = Path.Combine(sourceDirName, file.Name);
+                                Destpath = Path.Combine(destDirName, file.Name);
+
+                                if (!File.Exists(@Destpath))
+                                {
+                                    await Task.Run(() => File.Copy(Sourpath, Destpath, false), cancellation);
+                                }
+                            }
+                        }
+
+                        // Run the copying task
+                        await Task.WhenAll(todo);
+                    }
+                }
+                catch (Exception) { }
+            }
+
+            else
+            {
+                // Specific file backup (setting to overwrite the old backup, until the next hour hit. Change to "false" in the "File.Copy..." to change this.)
+                Destpath = Path.GetDirectoryName(destDirName);
+                
+                if (!Directory.Exists(Destpath))
+                {
+                    _ = Directory.CreateDirectory(Destpath);
+                }
+
+                try
+                {
+                    await Task.Run(() => File.Copy(sourceDirName, destDirName, true), cancellation);
+                    StatusReport.Text = await Task.Run(() => "Backing up: " + sourceDirName);
+                }
+                catch (Exception) { }
             }
         }
 
@@ -194,9 +281,14 @@ namespace Simple_Backup
                         if (s.Queue)
                         {
                             string DestinationFolder = Path.Combine(backupdir, s.Name);
-                            StatusReport.Text = await Task.Run(() => "Backing up: " + s.Path);
-
-                            await CopyMethod.CopyF(s.Path, DestinationFolder, cts.Token);
+                            try
+                            {
+                                await CopyF(s.Path, DestinationFolder, cts.Token);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString());
+                            }
                         }
                     }
                 }
