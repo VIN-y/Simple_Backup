@@ -37,9 +37,10 @@ namespace Simple_Backup
 
             // Display the list
             PathList.ItemsSource = queue.Sources;
+
+            // Block the Backup funtion by default
+            cts.Cancel();
         }
-
-
 
         /*
          * Working methods
@@ -249,8 +250,12 @@ namespace Simple_Backup
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            cts.Cancel();   // Throw Cancelation token
-            StatusReport.Text = "Cancelling backup ...";
+            //MessageBox.Show(cts.IsCancellationRequested);
+            if (!cts.IsCancellationRequested)
+            {
+                cts.Cancel();   // Throw Cancelation token
+                StatusReport.Text = "Cancelling backup ...";
+            }
         }
 
         private void BackupMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
