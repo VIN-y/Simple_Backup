@@ -201,11 +201,12 @@ namespace Simple_Backup
             string logpath = Path.Combine(currentpath, "Simple_Backup_Log");
             string sourcename = " ";
             string sourcepath = " ";
+            string[] lineread;
             bool sourcequeue = false;
 
             if (File.Exists(logpath))
             {
-                string[] lineread = File.ReadAllLines(logpath);
+                lineread = File.ReadAllLines(logpath);
 
                 foreach (string line in lineread)
                 {
@@ -265,6 +266,7 @@ namespace Simple_Backup
             {
                 SetupDefaultSourceFolders();
             }
+
             PathList.Items.Refresh();
         }
 
