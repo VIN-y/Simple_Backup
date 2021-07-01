@@ -1,12 +1,26 @@
 # Simple_Backup
 A simple backup app for Window
+
+![](Images/AppWindowExample.png)
+
 <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
 # Description:
+This is a self-contained (portable) app which would allow you to quickly make a copy of large number of files or a folders to a storage drive. It is made to be as simple as possible, which means the following:
+* Starting a backup is effortless -- Just open the app and click start.
+* There is no telemetry -- The app'sone and only job is to do backups.
+* Managing to backed up data and the app itself is easy and intuitive(*) -- The backups can be accessed as normal files/folders (there will be no special tool needed, including the app itself)
+
+(*) The backup files and folders will have the exact same name and folder structure, their content will not be accessed or modified in anyway. Furthermore, there is a single ".exe" file for the app and a log file named "Simple_Backup_Log", to save the user's latest setting configuration; to uninstall the app, just delete these two files. There will be not residual files, all backups will be left untouched and fully accessible like normal files/folders.
 
 # Installation:
+Just download the ".exe" in the lattest realease (shown on the right), and that is pretty much it. You can now click-on and use the app(**).
+OPTIONAL: Move the app into a folder named "Simple Backup" on the intended backup drive. This will make everything placed neatly in a single folder.
+
+(**) A caveat for the first boot: Window Defender will show a notification that the app is from a "Untrusted Publisher". This is because this app is not intended for any commercial distribution, thus it does not warranted the cost of a developer licence for Window (see the Footnotes for the developer comments).
 
 # Usage guide:
+
 
 # Footnotes:
 There are some missing features that is currently being worked on:
