@@ -27,7 +27,7 @@ The app will backup the files/folders that are queued, to the selected drive and
 
 Backup selection types:
 * Files -- will overwrite the old backup, until the selected time window has passed (Backup mode).
-* Folder -- will backup up newly added files in the folder, until the selected time window has passed (Backup mode).
+* Folder -- will backup up newly added files in the folder but but leave already backed up files alone, until the selected time window has passed (Backup mode).
 
 Modes:
 * Month -- create and update the a backup for that month --- This is best for larger folders, with infrequent/unchanging files (such as photos, musics, etc.)
