@@ -8,10 +8,10 @@ A simple backup app for Window
 # Description:
 This is a self-contained (portable) app which would allow you to quickly make a copy of large number of files or folders to a storage drive. It is made to be as simple as possible, which means the following:
 * Starting a backup is effortless -- Just open the app and click start.
-* There is no telemetry -- The app'sone and only job is to do backups.
-* Managing to backed up data and the app itself is easy and intuitive(*) -- The backups can be accessed as normal files/folders (there will be no special tool needed, including the app itself)
+* There is no telemetry -- The app's one and only job is to do backups.
+* Managing backups and the app itself is easy and intuitive(*) -- The backups can be accessed as normal files/folders (there will be no special tool needed, including the app itself).
 
-(*) The backup files and folders will have the exact same name and folder structure, their content will not be accessed or modified in anyway. Furthermore, there is a single ".exe" file for the app and a log file named "Simple_Backup_Log" (whch will be generated after first boot), to save the user's latest setting configuration; to uninstall the app, just delete these two files. There will be not residual files, all backups will be left untouched and fully accessible like normal files/folders.
+(*) The backup files and folders will have the exact same name and folder structure, their content will not be accessed or modified in anyway. Furthermore, there is a single ".exe" file for the app and a log file named "Simple_Backup_Log" (which will be generated after first boot), to save the user's latest setting configuration; to uninstall the app, just delete these two files. There will be not residual files, all backups will be left untouched and fully accessible as normal files/folders.
 
 # Installation:
 Just download the ".exe" in the lattest realease (shown on the right), and that is pretty much it. You can now click-on and use the app(**).
