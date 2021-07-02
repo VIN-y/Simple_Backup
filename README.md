@@ -6,7 +6,7 @@ A simple backup app for Window
 <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
 # Description:
-This is a self-contained (portable) app which would allow you to quickly make a copy of large number of files or a folders to a storage drive. It is made to be as simple as possible, which means the following:
+This is a self-contained (portable) app which would allow you to quickly make a copy of large number of files or folders to a storage drive. It is made to be as simple as possible, which means the following:
 * Starting a backup is effortless -- Just open the app and click start.
 * There is no telemetry -- The app'sone and only job is to do backups.
 * Managing to backed up data and the app itself is easy and intuitive(*) -- The backups can be accessed as normal files/folders (there will be no special tool needed, including the app itself)
