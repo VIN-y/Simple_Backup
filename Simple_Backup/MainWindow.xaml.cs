@@ -15,8 +15,10 @@ using System.Windows.Input;
 namespace Simple_Backup
 {
     /*
-    * Main Window
-    * Icon: <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    * Build command for the dev terminal:
+    * 
+    *   dotnet publish Simple_Backup -c Release -r win-x64 --self-contained=true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+    *   
     */
     public partial class MainWindow : Window
     {
