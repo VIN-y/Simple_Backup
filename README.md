@@ -16,9 +16,9 @@ This is a self-contained (portable) app which would allow you to quickly make a 
 # Installation:
 Just download the ".exe" in the lattest realease (shown on the right), and that is pretty much it. You can now click-on and use the app(**).
 
-OPTIONAL: Move the app into a folder named "Simple Backup" on the intended backup drive. This will make everything placed neatly in a single folder.
+OPTIONAL: Move the app into a folder named "Simple Backup" on the intended backup drive. This will make everything placed neatly in a single folder (example below).
 
-![](Images/InstallationExample.png)
+![](Images/InstallationExample1.png)
 
 (**) A caveat for the first boot: Window Defender will show a notification that the app is from a "Untrusted Publisher". This is because this app is not intended for any commercial distribution, thus it does not warranted the cost of a developer licence for Window (see the Footnotes for the developer comments).
 
