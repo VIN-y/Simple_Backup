@@ -42,4 +42,4 @@ There are some missing features that is currently being worked on:
 Here are features that I though about, but still don't know if they are worth it (or simply have not figured out how to do yet):
 1. Trusted Publisher Certificate - this would allow the app to not be seen as from a untrusted publisher. However, it is a paid feature and I cannot commit to that yet.
 2. Local installation (into the "./Program File" folder) - the app itself would required very little changes for this to happen. The problem is one again the "Trusted Publisher Certificate"
-3. Title bar theme and overall aesthetic - this will a lot of work just for better look. So this will be at the lowest priority.
+3. Title bar theme and overall aesthetic - waiting for WinUI 3 release (Q4 2021). This will be part of a massive up change (including more features to the app), which may be beter published in a seperate repository, to keep this simple version of the app around.
