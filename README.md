@@ -20,7 +20,7 @@ OPTIONAL: Move the app into a folder named "Simple Backup" on the intended backu
 
 ![](Images/InstallationExample1.png)
 
-(**) A caveat for the first boot: Window Defender will show a notification that the app is from a "Untrusted Publisher". This is because this app is not intended for any commercial distribution, thus it does not warranted the cost of a developer licence for Window (see the Footnotes for the developer comments).
+(**) A caveat for the first boot: Window Defender will show a notification that the app is from a "Untrusted Publisher". This is because this app is not intended for any commercial distribution, thus it does not warranted the cost of a developer licence for Window.
 
 # Usage guide:
 The app will backup the files/folders that are queued, to the selected drive and according to the mode.
