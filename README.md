@@ -35,11 +35,10 @@ Modes:
 * Hour -- create and update the a backup for that hour --- This is similar to the "Day" mode, but much more frequently.
 
 # Footnotes:
-There are some missing features that is currently being worked on:
+
+Here are features that are waiting for WinUI 3 release (Q4 2021), which will be part of a massive up change (including more features to the app), which may be beter published in a seperate repository, to keep this simple version of the app around:
 1. Auto backup - Create a scheduled task, which can be change by the user.
 2. Encryption - encrypt the drive itself, so any system (different computer and OS) would need to put in a password to get the data from the drive. I just have not figured out how to do this yet.
-
-Here are features that I though about, but still don't know if they are worth it (or simply have not figured out how to do yet):
-1. Trusted Publisher Certificate - this would allow the app to not be seen as from a untrusted publisher. However, it is a paid feature and I cannot commit to that yet.
-2. Local installation (into the "./Program File" folder) - the app itself would required very little changes for this to happen. The problem is one again the "Trusted Publisher Certificate"
-3. Title bar theme and overall aesthetic - waiting for WinUI 3 release (Q4 2021). This will be part of a massive up change (including more features to the app), which may be beter published in a seperate repository, to keep this simple version of the app around.
+3. Trusted Publisher Certificate - this would allow the app to not be seen as from a untrusted publisher. However, it is a paid feature and I cannot commit to that yet.
+4. Local installation (into the "./Program File" folder) - the app itself would required very little changes for this to happen. The problem is one again the "Trusted Publisher Certificate".
+5. Title bar theme and overall aesthetic.
