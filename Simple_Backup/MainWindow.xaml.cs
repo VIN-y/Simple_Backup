@@ -100,6 +100,7 @@ namespace Simple_Backup
                 try
                 {
                     DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+                    DirectoryInfo dirD = new DirectoryInfo(destDirName);
                     DirectoryInfo[] dirs = dir.GetDirectories();
 
                     // If the source directory does not exist, throw an exception.
@@ -127,8 +128,9 @@ namespace Simple_Backup
                             }
                         }
 
-                        // Get the file contents of the directory to copy.
                         FileInfo[] files = dir.GetFiles();
+                        FileInfo[] fileDs = dirD.GetFiles();
+
                         foreach (FileInfo file in files)
                         {
                             if (!(file.Name == Excep))
@@ -136,9 +138,24 @@ namespace Simple_Backup
                                 Sourpath = Path.Combine(sourceDirName, file.Name);
                                 Destpath = Path.Combine(destDirName, file.Name);
 
+                                // Copy new files
                                 if (!File.Exists(@Destpath))
                                 {
                                     await Task.Run(() => File.Copy(Sourpath, Destpath, false), cancellation);
+                                }
+                                // overwrite modified files
+                                else
+                                {
+                                    foreach (FileInfo fileD in fileDs)
+                                    {
+                                        if (fileD.Name == file.Name)
+                                        {
+                                            if (file.LastWriteTime > fileD.LastWriteTime)
+                                            {
+                                                await Task.Run(() => File.Copy(Sourpath, Destpath, true), cancellation);
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
