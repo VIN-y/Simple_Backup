@@ -11,7 +11,7 @@ This is a self-contained (portable) app which would allow you to quickly make a 
 * There is no telemetry -- The app's one and only job is to do backups.
 * Managing backups and the app itself is easy and intuitive(*) -- The backups can be accessed as normal files/folders (there will be no special tool needed, including the app itself).
 
-(*) The backup files and folders will have the exact same name and folder structure, their content will not be accessed or modified in anyway. Furthermore, there is a single ".exe" file for the app and a log file named "Simple_Backup_Log" (which will be generated after first boot), to save the user's latest setting configuration; to uninstall the app, just delete these two files. There will be not residual files, all backups will be left untouched and fully accessible as normal files/folders.
+(*) The backup files and folders will have the exact same name and folder structure, their content will not be accessed or modified in anyway. Furthermore, there are two files that make up the app: a ".exe" file, and a log file named "Simple_Backup_Log" (which will be generated after first boot, to save the user's latest setting configuration); to uninstall the app, just delete these two files. There will be not residual files, all backups will be left untouched and fully accessible as normal files/folders.
 
 # Installation:
 Just download the ".exe" in the lattest realease (shown on the right), and that is pretty much it. You can now click-on and use the app(**).
@@ -23,16 +23,13 @@ OPTIONAL: Move the app into a folder named "Simple Backup" on the intended backu
 (**) A caveat for the first boot: Window Defender will show a notification that the app is from a "Untrusted Publisher". This is because this app is not intended for any commercial distribution, thus it does not warranted the cost of a developer licence for Window.
 
 # Usage guide:
-The app will backup the files/folders that are queued, to the selected drive and according to the mode.
-
-Backup selection types:
-* Files -- will overwrite the old backup, until the selected time window has passed (Backup mode).
-* Folder -- will backup up newly added files in the folder but but leave already backed up files alone, until the selected time window has passed (Backup mode).
+The app will backup the files/folders that are queued to the selected drive and according to the mode, which can be "Add" or "Remove" with the given buttons.
+To queue, just double-click the item in the list.
 
 Modes:
-* Month -- create and update the a backup for that month --- This is best for larger folders, with infrequent/unchanging files (such as photos, musics, etc.)
-* Day -- create and update the a backup for that day --- This is for project folders, which contains files that you are currently working with.
-* Hour -- create and update the a backup for that hour --- This is similar to the "Day" mode, but much more frequently.
+* Month -- create new and update the a backup for that month --- This is best for larger folders, with infrequent/unchanging files (such as photos, musics, etc.)
+* Day -- create new and update the a backup for that day --- This is for project folders, which contains files that you are currently working with.
+* Hour -- create new and update the a backup for that hour --- This is similar to the "Day" mode, but much more frequently.
 
 # Footnotes:
 
