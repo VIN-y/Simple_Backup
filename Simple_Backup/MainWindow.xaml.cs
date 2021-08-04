@@ -343,6 +343,7 @@ namespace Simple_Backup
                     try
                     {
                         await Backup(cts.Token);
+                        StatusReport.Text = await Task.Run(() => "Finishing ...");
                         await Task.Delay(1500);
                         StatusReport.Text = await Task.Run(() => " ");
                     }
